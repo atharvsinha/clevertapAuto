@@ -45,28 +45,27 @@ app.post("/upload", (req, res) => {
   const data1 = JSON.stringify({ d: events });
   const data2 = JSON.stringify({ d: users });
   const options1 = {
-    url: "https://api.clevertap.com/1/upload",
+    url: "https://api.clevertap.com/1/upload?dryRun=1",
     method: "POST",
     headers: headers,
     body: data1,
   };
   const options2 = {
-    url: "https://api.clevertap.com/1/upload",
+    url: "https://api.clevertap.com/1/upload?dryRun=1",
     method: "POST",
     headers: headers,
     body: data2,
   };
-  let resp = [];
+
   function callback(error, response, body) {
-    resp.push(response.statusCode);
-    console.log(resp);
+    console.log(response.statusCode);
   }
 
-  request(options1, callback);
-  request(options2, callback);
+  request.post(options1, callback);
+  request.post(options2, callback);
 
   postedData.push({ events: events, users: users });
-  display.push(`${req.body.Identity} is pushed!${resp}`);
+  display.push(`${req.body.Identity} is pushed!`);
   res.send(postedData);
 });
 app.get("/", (req, res) => {
