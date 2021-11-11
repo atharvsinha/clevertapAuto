@@ -56,7 +56,7 @@ app.post("/upload", (req, res) => {
     headers: headers,
     body: data2,
   };
-
+  let res1, res2;
   function callback(error, response, body) {
     console.log(response.statusCode);
   }
@@ -65,7 +65,7 @@ app.post("/upload", (req, res) => {
   request(options2, callback);
 
   postedData.push({ events: events, users: users });
-  display.push(`${req.body.username} is pushed!`);
+  display.push(`${req.body.Identity} is pushed!`);
   res.send(postedData);
 });
 app.get("/", (req, res) => {
