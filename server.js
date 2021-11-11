@@ -13,7 +13,7 @@ app.post("/upload", (req, res) => {
   display.push(`${req.body.username} is pushed!`);
 });
 app.get("/", (req, res) => {
-  res.send(display);
+  res.send(data);
 });
 console.log(port);
 console.log(Date.now());
