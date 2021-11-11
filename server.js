@@ -8,12 +8,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let data = [];
 let display = [];
 
-// app.post("/upload", (req, res) => {
-//   data.push(req.body);
-//   display.push(`${req.body.username} is pushed!`);
-// });
+app.post("/upload", (req, res) => {
+  data.push(req.body);
+  display.push(`${req.body.username} is pushed!`);
+});
 app.get("/", (req, res) => {
-  res.send("hi");
+  res.send(display);
 });
 console.log(port);
 console.log(Date.now());
