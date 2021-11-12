@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post("/upload", (req, res) => {
   let events = {
     identity: req.body["Identity"],
+    ts: Math.floor(Date.now() / 1000),
     evtName: req.body["evtName"],
     type: "event",
     evtData: {
@@ -30,35 +31,35 @@ app.post("/upload", (req, res) => {
       page: req.body["page"],
       slotDate: req.body["slot date"],
       teacherName: req.body["teacher name"],
-      timestamp: Date.now(),
     },
   };
   let users = {
     identity: req.body["Identity"],
     type: "profile",
+    ts: Math.floor(Date.now() / 1000),
     profileData: {
       customerType: req.body["customer type"],
       parentName: req.body["parent name"],
-      timestamp: Date.now(),
     },
   };
-  const data1 = JSON.stringify({ d: events });
-  const data2 = JSON.stringify({ d: users });
+  const data1 = JSON.stringify({ d: [events] });
+  console.log(data1);
+  const data2 = JSON.stringify({ d: [users] });
   const options1 = {
-    url: "https://api.clevertap.com/1/upload",
+    url: "https://api.clevertap.com/1/upload?runRun=1",
     method: "POST",
     headers: headers,
     body: data1,
   };
   const options2 = {
-    url: "https://api.clevertap.com/1/upload",
+    url: "https://api.clevertap.com/1/upload?dryRun=1",
     method: "POST",
     headers: headers,
     body: data2,
   };
 
   function callback(error, response, body) {
-    console.log(response.statusCode);
+    console.log(body);
   }
 
   request.post(options1, callback);
