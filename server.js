@@ -15,6 +15,7 @@ let postedData = [];
 let display = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.post("/upload", (req, res) => {
   let events = {
     identity: req.body["Identity"],
@@ -60,7 +61,6 @@ app.post("/upload", (req, res) => {
 
   function callback(error, response, body) {
     console.log(body);
-    bodies.push(body);
   }
 
   request.post(options1, callback);
@@ -70,6 +70,7 @@ app.post("/upload", (req, res) => {
   display.push(`${req.body.Identity} is pushed!`);
   res.send(postedData);
 });
+
 app.get("/", (req, res) => {
   res.send(display);
 });
