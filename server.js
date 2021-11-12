@@ -46,13 +46,13 @@ app.post("/upload", (req, res) => {
   console.log(data1);
   const data2 = JSON.stringify({ d: [users] });
   const options1 = {
-    url: "https://api.clevertap.com/1/upload?runRun=1",
+    url: "https://api.clevertap.com/1/upload",
     method: "POST",
     headers: headers,
     body: data1,
   };
   const options2 = {
-    url: "https://api.clevertap.com/1/upload?dryRun=1",
+    url: "https://api.clevertap.com/1/upload",
     method: "POST",
     headers: headers,
     body: data2,
@@ -60,6 +60,7 @@ app.post("/upload", (req, res) => {
 
   function callback(error, response, body) {
     console.log(body);
+    bodies.push(body);
   }
 
   request.post(options1, callback);
