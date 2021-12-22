@@ -32,8 +32,20 @@ app.post("/upload", (req, res) => {
       page: req.body["page"],
       slotDate: req.body["slot date"],
       teacherName: req.body["teacher name"],
+      ageGroup: req.body["age group"],
+      lessonName: req.body["lessonName"],
+      parentName: req.body["parent name"],
+      preferredDate: req.body["preferred date"],
+      email: req.body["email"],
+      platform: req.body["platform"],
+      transactionDate: req.body["transaction date"],
+      channel: req.body["channel"],
+      zoomLink: req.body["zoom link"],
+      learningMaterial: req.body["learning material"],
+      feedbackJotform: req.body["feedback jotform"],
     },
   };
+  //child name	child birthdate
   let users = {
     identity: req.body["Identity"],
     type: "profile",
@@ -41,6 +53,8 @@ app.post("/upload", (req, res) => {
     profileData: {
       customerType: req.body["customer type"],
       parentName: req.body["parent name"],
+      childName: req.body["child name"],
+      childBirthdate: req.body["child birthdate"],
     },
   };
   const data1 = JSON.stringify({ d: [events] });
